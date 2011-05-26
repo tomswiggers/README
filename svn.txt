@@ -1,0 +1,2 @@
+svn status | grep ? | cut -d " " -f 8 | xargs svn add
+
