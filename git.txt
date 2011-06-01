@@ -1,0 +1,1 @@
+ git diff --name-only 123eeaf0d3c86174add932ad1916cb74b5cdce95 | awk '{n = split($0,a,"/"); str = "mkdir ../../svn/trunk"; for (i=1; i<=n-1; i++) str = str "/" a[i]; print str;}'
