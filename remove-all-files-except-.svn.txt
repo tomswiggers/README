@@ -1,0 +1,1 @@
+find . -path '*/.svn' -prune -o -type f -print | grep formbuilder | awk '{print "\42" $0 "\42";}' | xargs rm
