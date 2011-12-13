@@ -1,0 +1,6 @@
+find . -path '*' -type f -print | awk '{"sha1sum "$0 | getline sum1; filename = "../subsite/"$0; "sha1sum "filename | getline sum2; split(sum1, ssum1, "*"); split(sum2, ssum2, "*"); print ssum1[2] " " ssum1[1] " " ssum2[1];}' 2> /dev/null
+
+find . -path '*' -type f -print | awk '{"sha1sum "$0 | getline sum1;}'
+
+find modules -type f -print | while read filename; do shared_filename="../all/"$filename;  if [ -f $shared_filename ]; then sha1=`sha1sum $filename | cut -d " " -f1`; sha1_share=`sha1sum $shared_filename | cut -d " " -f1`; status="DIFF"; if [ $sha1 = $sha1_shared ]; then status="SAME"; fi; echo $status";"$sha1";"$sha1_shared";"$filename";"$shared_filenam; else echo "SUBSITE_ONLY;"$filename; fi; done;
+
