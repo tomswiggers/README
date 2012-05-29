@@ -1,0 +1,19 @@
+<?php
+global $db_url;
+
+$db_url_tmp = $db_url;
+
+$db_url = array();
+$db_url['default'] = $db_url_tmp;
+$db_url['uk'] = 'mysqli:/*****:*****@*****/*****';
+
+$result = db_set_active('uk');
+
+$res = db_query("");
+
+while ($row = db_fetch_array($res)) {
+	  var_dump($row);
+}
+
+db_set_active('default');
+
